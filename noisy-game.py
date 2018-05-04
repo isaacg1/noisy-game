@@ -70,8 +70,8 @@ def evolutions(results):
     return scores
 
 if __name__ == '__main__':
-    from basic import cooperate, defect, random_player, tit_for_tat, threshold
-    players = [cooperate, defect, random_player, tit_for_tat, threshold]
+    from basic import cooperate, defect, random_player, tit_for_tat, threshold, exploit_threshold
+    players = [cooperate, defect, random_player, tit_for_tat, threshold, exploit_threshold]
     results = score(players)
     final_results = evolutions(results)
     for player, final in sorted(zip(players, final_results), key=lambda p:-p[1]):

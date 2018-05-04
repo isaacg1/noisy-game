@@ -26,3 +26,16 @@ def threshold(my_plays, their_flipped_plays):
         return 'c'
     else:
         return 'd'
+
+def exploit_threshold(my_plays, their_flipped_plays):
+    if len(their_flipped_plays) < 10:
+        return 'c'
+    opp_c_freq = their_flipped_plays.count('c')/len(their_flipped_plays)
+    if opp_c_freq > 0.6:
+        if random.random() < opp_c_freq - 0.6:
+            return 'd'
+        else:
+            return 'c'
+    else:
+        return 'd'
+
