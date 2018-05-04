@@ -45,20 +45,34 @@ def score(players):
                     p1_flipped.append(p1_flip)
                     p2_plays.append(p2_play)
                     p2_flipped.append(p2_flip)
-            # OVerwrite if i = j is intentional
-            print(p1_score, p1.__name__, p2_score, p2.__name__)
+            # Overwrite if i = j is intentional
             results[i][j] = p1_score
             results[j][i] = p2_score
     return results
 
+EVOLUTIONS = 100
+EVOLUTION_STEPS = 100
 def evolutions(results):
-    assert False
+    num_players = len(results)
+    scores = [0 for _ in range(num_players)]
+    for _ in range(EVOLUTIONS):
+        weights = [1/num_players for _ in range(num_players)]
+        for _ in range(EVOLUTION_STEPS):
+            new_weights = []
+            for i in range(num_players):
+                old_weight = weights[i]
+                average_score = sum(weight * result for weight, result in zip(weights, results[i]))
+                new_weights.append(old_weight * average_score)
+            normalizer = sum(new_weights)
+            weights = [new_weight/normalizer for new_weight in new_weights]
+        for i in range(num_players):
+            scores[i] += weights[i]
+    return scores
 
 if __name__ == '__main__':
-    from basic import cooperate, defect, random_player
-    players = [cooperate, defect, random_player]
+    from basic import cooperate, defect, random_player, tit_for_tat, threshold
+    players = [cooperate, defect, random_player, tit_for_tat, threshold]
     results = score(players)
-    print(results)
     final_results = evolutions(results)
-    for player, final in zip(players, final_results):
-        print(player.name, final)
+    for player, final in sorted(zip(players, final_results), key=lambda p:-p[1]):
+        print("{}: {:.6}".format(player.__name__, final))
