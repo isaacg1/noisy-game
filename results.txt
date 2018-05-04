@@ -1,6 +1,6 @@
-exploit_threshold: 99.947
-threshold: 0.0306388
-cooperate: 0.0169717
-tit_for_tat: 0.00542102
-defect: 7.92907e-07
-random_player: 1.1406e-14
+exploit_threshold: 99.9997
+threshold: 0.000224627
+cooperate: 5.42319e-05
+tit_for_tat: 3.58948e-12
+defect: 6.09524e-14
+random_player: 2.59106e-36

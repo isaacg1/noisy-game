@@ -38,4 +38,3 @@ def exploit_threshold(my_plays, their_flipped_plays):
             return 'c'
     else:
         return 'd'
-

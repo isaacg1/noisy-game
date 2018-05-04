@@ -8,26 +8,32 @@ Each round works as follows:
 * Play for 300 moves
 
 On each move, each participant knows:
-* Their past (preflip) plays this round
-* Their opponent's postflip plays this round.
+* Their past plays this round
+* Their opponent's plays this round, subject to noise. Each opponent's past play in list is wrong with probability equal to the flip probability.
 
 Then, the participant chooses a play:
 'c' for cooperate
 'd' for defect
 
-Then, the play is flipped with probability equal to the flip probability.
-If the post-flip value is 'c',
+If they choose 'c',
 the opponent gets 2 points.
-If the post-flip value is 'd',
+If choose 'd',
 the player gets 1 point.
 
 After all rounds have been played,
-players will be scored according to simulated evolution.
+each player has a raw score. However, this score weights success against opponents that do well and opponents that do poorly equally.
+
+In this challenge, it is more important to succeed against opponents who do well.
+
+Players will be scored according to simulated evolution.
+
 Each player starts with an equal share of the population.
 A player's share in the next round is proportional to
 * The player's previous share
 * The average score against all opponents (including the player itself), weighted by opponent's share.
 
-The sum over shares over 100 evolution runs is the final result.
+After 100 evolution iterations, the player's share of the population is its final score for this run.
+
+The overall score will be the sum of final scores over 100 runs.
 
 This system means that it's important to do well against opponents who do well.

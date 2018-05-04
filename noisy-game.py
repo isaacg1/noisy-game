@@ -33,11 +33,11 @@ def score(players):
                     p2_play = p2(p2_plays, p1_flipped)
                     p1_flip = flip(flip_prob, p1_play)
                     p2_flip = flip(flip_prob, p2_play)
-                    if p1_flip == 'c':
+                    if p1_play == 'c':
                         p2_score += 2
                     else:
                         p1_score += 1
-                    if p2_flip == 'c':
+                    if p2_play == 'c':
                         p1_score += 2
                     else:
                         p2_score += 1
