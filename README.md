@@ -26,6 +26,8 @@ players will be scored according to simulated evolution.
 Each player starts with an equal share of the population.
 A player's share in the next round is proportional to
 * The player's previous share
-* The average score against all opponents (including the player itself), wheighted by opponent's share.
+* The average score against all opponents (including the player itself), weighted by opponent's share.
 
 The sum over shares over 100 evolution runs is the final result.
+
+This system means that it's important to do well against opponents who do well.
