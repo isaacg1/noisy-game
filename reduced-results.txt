@@ -1,7 +1,8 @@
-stubborn_stumbler: 99.0239
-slider: 0.442867
-tit_for_whoops: 0.436267
-random_player: 0.0969847
-cooperate: 1.84431e-06
-growing_distrust: 7.64011e-11
-defect: 5.67056e-12
+tit_for_time: 54.3676
+stubborn_stumbler: 28.6726
+slider: 15.189
+tit_for_whoops: 1.70523
+random_player: 0.0633336
+growing_distrust: 0.0012677
+cooperate: 0.000601171
+defect: 0.000402839

@@ -15,7 +15,6 @@ ROUNDS = 100
 PLAYS = 300
 # results[i][j] = i's score against j.
 def score(players):
-    random.seed(0)
     results = [[0 for _ in range(len(players))] for _ in range(len(players))]
     for i in range(len(players)):
         for j in range(i+1):
@@ -68,22 +67,24 @@ def evolution(results):
         weights = [new_weight/normalizer for new_weight in new_weights]
     return weights
 
-GAMES = 10
+OUT_OF = 100
+GAMES = 10 if '-f' not in sys.argv else 100
 def all_games(players):
+    random.seed(0)
     scores = [0 for _ in range(len(players))]
     for _ in range(GAMES):
         results = score(players)
         round_scores = evolution(results)
         for i in range(len(scores)):
-            scores[i] += round_scores[i] * 10
+            scores[i] += round_scores[i] * OUT_OF / GAMES
     return scores
 
 
 if __name__ == '__main__':
     from basic import cooperate, defect, random_player, tit_for_tat, threshold, exploit_threshold
-    from submissions1 import tit_for_whoops, growing_distrust, stubborn_stumbler, slider
-    players = [cooperate, defect, random_player, stubborn_stumbler, slider,
-            tit_for_whoops, growing_distrust]
+    from submissions1 import tit_for_whoops, growing_distrust, stubborn_stumbler, slider, tit_for_time
+    players = [cooperate, defect, random_player,
+        tit_for_whoops, growing_distrust, stubborn_stumbler, slider, tit_for_time]
     if '-b' not in sys.argv:
         players.extend([tit_for_tat, threshold, exploit_threshold])
     final_results = all_games(players)

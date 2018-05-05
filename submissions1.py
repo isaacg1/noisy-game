@@ -58,3 +58,8 @@ def slider(m, t, s):
     for y in t:
       x = z[x][y == 'c']
     return 'c' if x < 2 else 'd'
+
+def tit_for_time(mine, theirs, state):
+    theirs = theirs[-30:]
+    no_rounds = len(theirs)
+    return "c" if no_rounds < 5 or random.random() > theirs.count("d") / no_rounds else "d"
