@@ -24,7 +24,6 @@ def growing_distrust(mine, theirs, state):
         state_info['trust'] = True
 
     return 'c' if state_info['trust'] else 'd'
-
 def stubborn_stumbler(m, t, s):
     if not t:
         s.append(dict(last_2=[], last_3=[]))
@@ -42,20 +41,19 @@ def stubborn_stumbler(m, t, s):
     # Checks if you've consistently defected against me
     opp_def_3 = s['last_3'].count('d') > s['last_3'].count('c')
     opp_def_2 = s['last_2'].count('d') > s['last_2'].count('c')
+    # dist func from 0 to 1
+    dist = lambda x: 1/(1+math.exp(-5*(x-0.5)))
     # You've wronged me too much
     if opp_def_3 and opp_def_2:
         return 'd'
-    # If we're not sure, employ random chance, biased towards niceness
-    elif opp_def_2:
-        return 'c' if random.random() > 0.25 else 'd'
     # Otherwise, if you're consistently co-operating, co-operate more
     # the less naive you are
     else:
-        return 'c' if random.random() > c_freq - 0.5 else 'd'
+        return 'c' if random.random() > dist(c_freq) - 0.5 else 'd'
 
 def slider(m, t, s):
-    z = [[0, 1], [0, 2], [1, 3], [2, 3]]
+    z = [[2, 1], [0, 1], [2, 3], [2, 1]]
     x = 0
     for y in t:
       x = z[x][y == 'c']
-    return 'd' if x < 2 else 'c'
+    return 'c' if x < 2 else 'd'
