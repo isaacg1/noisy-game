@@ -53,24 +53,31 @@ def score(players):
             results[j][i] = p2_score
     return results
 
-EVOLUTIONS = 100
 EVOLUTION_STEPS = 100
-def evolutions(results):
+def evolution(results):
     num_players = len(results)
     scores = [0 for _ in range(num_players)]
-    for _ in range(EVOLUTIONS):
-        weights = [1/num_players for _ in range(num_players)]
-        for _ in range(EVOLUTION_STEPS):
-            new_weights = []
-            for i in range(num_players):
-                old_weight = weights[i]
-                average_score = sum(weight * result for weight, result in zip(weights, results[i]))
-                new_weights.append(old_weight * average_score)
-            normalizer = sum(new_weights)
-            weights = [new_weight/normalizer for new_weight in new_weights]
+    weights = [1/num_players for _ in range(num_players)]
+    for _ in range(EVOLUTION_STEPS):
+        new_weights = []
         for i in range(num_players):
-            scores[i] += weights[i]
+            old_weight = weights[i]
+            average_score = sum(weight * result for weight, result in zip(weights, results[i]))
+            new_weights.append(old_weight * average_score)
+        normalizer = sum(new_weights)
+        weights = [new_weight/normalizer for new_weight in new_weights]
+    return weights
+
+GAMES = 10
+def all_games(players):
+    scores = [0 for _ in range(len(players))]
+    for _ in range(GAMES):
+        results = score(players)
+        round_scores = evolution(results)
+        for i in range(len(scores)):
+            scores[i] += round_scores[i] * 10
     return scores
+
 
 if __name__ == '__main__':
     from basic import cooperate, defect, random_player, tit_for_tat, threshold, exploit_threshold
@@ -79,7 +86,6 @@ if __name__ == '__main__':
             tit_for_whoops, growing_distrust]
     if '-b' not in sys.argv:
         players.extend([tit_for_tat, threshold, exploit_threshold])
-    results = score(players)
-    final_results = evolutions(results)
+    final_results = all_games(players)
     for player, final in sorted(zip(players, final_results), key=lambda p:-p[1]):
         print("{}: {:.6}".format(player.__name__, final))
