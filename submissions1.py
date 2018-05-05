@@ -1,4 +1,5 @@
 import random
+import math
 
 def tit_for_whoops(m, t, s):
     if len(t) < 2:
