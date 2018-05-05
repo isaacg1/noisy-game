@@ -1,5 +1,5 @@
-defect: 93.2977
-growing_distrust: 6.70232
-tit_for_whoops: 2.51684e-21
-random_player: 2.8355e-26
-cooperate: 3.3495e-99
+defect: 94.6293
+growing_distrust: 5.3707
+tit_for_whoops: 7.05213e-21
+random_player: 2.55703e-26
+cooperate: 1.34343e-112
