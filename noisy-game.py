@@ -74,7 +74,7 @@ def evolutions(results):
 if __name__ == '__main__':
     from basic import cooperate, defect, random_player, tit_for_tat, threshold, exploit_threshold
     from submissions1 import tit_for_whoops, growing_distrust
-    players = [cooperate, defect, random_player, 
+    players = [cooperate, defect, random_player, tit_for_tat, threshold, exploit_threshold,
             tit_for_whoops, growing_distrust]
     results = score(players)
     final_results = evolutions(results)
