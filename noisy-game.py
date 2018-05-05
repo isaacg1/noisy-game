@@ -1,4 +1,5 @@
 import random
+import sys
 
 def flip(flip_prob, play):
     assert play == 'c' or play == 'd'
@@ -74,8 +75,10 @@ def evolutions(results):
 if __name__ == '__main__':
     from basic import cooperate, defect, random_player, tit_for_tat, threshold, exploit_threshold
     from submissions1 import tit_for_whoops, growing_distrust
-    players = [cooperate, defect, random_player, tit_for_tat, threshold, exploit_threshold,
+    players = [cooperate, defect, random_player, 
             tit_for_whoops, growing_distrust]
+    if '-b' not in sys.argv:
+        players.extend([tit_for_tat, threshold, exploit_threshold])
     results = score(players)
     final_results = evolutions(results)
     for player, final in sorted(zip(players, final_results), key=lambda p:-p[1]):
