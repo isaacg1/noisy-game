@@ -1,4 +1,5 @@
-defect: 100.0
-tit_for_whoops: 1.8823e-22
-random_player: 3.48033e-27
-cooperate: 0.0
+defect: 93.2977
+growing_distrust: 6.70232
+tit_for_whoops: 2.51684e-21
+random_player: 2.8355e-26
+cooperate: 3.3495e-99

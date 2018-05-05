@@ -26,11 +26,13 @@ def score(players):
                 flip_prob = random.uniform(0, 0.5)
                 p1_plays = []
                 p1_flipped = []
+                p1_state = []
                 p2_plays = []
                 p2_flipped = []
+                p2_state = []
                 for _ in range(PLAYS):
-                    p1_play = p1(p1_plays, p2_flipped)
-                    p2_play = p2(p2_plays, p1_flipped)
+                    p1_play = p1(p1_plays, p2_flipped, p1_state)
+                    p2_play = p2(p2_plays, p1_flipped, p2_state)
                     p1_flip = flip(flip_prob, p1_play)
                     p2_flip = flip(flip_prob, p2_play)
                     if p1_play == 'c':
@@ -71,9 +73,9 @@ def evolutions(results):
 
 if __name__ == '__main__':
     from basic import cooperate, defect, random_player, tit_for_tat, threshold, exploit_threshold
-    from submissions1 import tit_for_whoops
-    players = [cooperate, defect, random_player, tit_for_tat, threshold, exploit_threshold,
-            tit_for_whoops]
+    from submissions1 import tit_for_whoops, growing_distrust
+    players = [cooperate, defect, random_player, 
+            tit_for_whoops, growing_distrust]
     results = score(players)
     final_results = evolutions(results)
     for player, final in sorted(zip(players, final_results), key=lambda p:-p[1]):
