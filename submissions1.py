@@ -63,3 +63,38 @@ def tit_for_time(mine, theirs, state):
     theirs = theirs[-30:]
     no_rounds = len(theirs)
     return "c" if no_rounds < 5 or random.random() > theirs.count("d") / no_rounds else "d"
+
+def decaying_memory(me, them, state):
+    m = 0.95
+    lt = len(them)
+
+    if not lt:
+        state.append(0.0)
+        return 'c'
+
+    # If it's the last round, there is no reason not to defect
+    if lt >= 299: return 'd'
+
+    state[0] = state[0] * m + (1.0 if them[-1] == 'c' else -1.0)
+
+    # Use a gaussian distribution to reduce variance when opponent is more consistent
+    return 'c' if lt < 5 or random.gauss(0, 0.4) < state[0] / ((1-m**lt)/(1-m)) else 'd'
+
+def jedi2sith(me, them, the_force):
+  time=len(them)
+  bad_things=them.count('d')
+  dark_side=(time+bad_things)/300
+  if dark_side>random.random():
+    return 'd'
+  else:
+    return 'c'
+
+def kickback(m, t, s):
+  if len(m) < 10:
+    return "c"
+  td = t.count("d")
+  md = m.count("d")
+  f = td/(len(t)+1)
+  if f < 0.3:
+    return "d" if td > md and random.random() < 0.1 else "c"
+  return "c" if random.random() > f+2*f*f else "d"

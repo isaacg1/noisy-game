@@ -82,9 +82,9 @@ def all_games(players):
 
 if __name__ == '__main__':
     from basic import cooperate, defect, random_player, tit_for_tat, threshold, exploit_threshold
-    from submissions1 import tit_for_whoops, growing_distrust, stubborn_stumbler, slider, tit_for_time
+    from submissions1 import tit_for_whoops, growing_distrust, stubborn_stumbler, slider, tit_for_time, decaying_memory, jedi2sith, kickback
     players = [cooperate, defect, random_player,
-        tit_for_whoops, growing_distrust, stubborn_stumbler, slider, tit_for_time]
+        tit_for_whoops, growing_distrust, stubborn_stumbler, slider, tit_for_time, decaying_memory, jedi2sith, kickback]
     if '-b' not in sys.argv:
         players.extend([tit_for_tat, threshold, exploit_threshold])
     final_results = all_games(players)
