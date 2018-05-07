@@ -144,3 +144,33 @@ def somewhat_naive(m, t, s):
         return 'c' if random.random() > p_flip else 'd'
     d_freq = t[-n:].count('d')/n
     return 'c' if d_freq < p_flip else 'd'
+
+def trickster(player,opponent,state):
+    pBad = 0.75
+    pNice = 0.8
+    pReallyBad =0.1
+    decay = 0.98
+    r = random.random()
+
+    if len(player)<20: #start off nice
+        return 'c' 
+    else: #now the trickery begins
+        last5 = opponent[-5:].count('c')/5.0 > 0.5
+        last5old = opponent[-10:-5].count('c')/5.0  > 0.5
+        if last5 and last5old: #she is naive, punish her
+            pBad = pBad*decay #Increase punishment
+            if r<pBad:
+                return 'c'
+            else:
+                return 'd'
+        elif last5 ^ last5old: #she is changing her mind, be nice!
+            if r<pNice:
+                return 'c'
+            else:
+                return 'd'
+        else: #she's ratting you out, retaliate
+            pReallyBad = pReallyBad*decay #Retaliate harder
+            if r<pReallyBad:
+                return 'c'
+            else:
+                return 'd'
