@@ -54,9 +54,11 @@ def stubborn_stumbler(m, t, s):
 
 def slider(m, t, s):
     z = [[2, 1], [0, 1], [2, 3], [2, 1]]
-    x = 0
-    for y in t:
-      x = z[x][y == 'c']
+    if not s:
+        s.append(0)
+    else:
+        s[0] = z[s[0]][t[-1] == 'c']
+    x = s[0]
     return 'c' if x < 2 else 'd'
 
 def tit_for_time(mine, theirs, state):
