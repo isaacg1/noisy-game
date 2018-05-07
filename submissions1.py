@@ -174,3 +174,26 @@ def trickster(player,opponent,state):
                 return 'c'
             else:
                 return 'd'
+
+def sounder(my, their, state):
+    if len(my)<4:
+        if their.count("d")>1:
+            return "d"
+        return "c"
+    elif len(my) == 4:
+        if all(i == "c" for i in their):
+            state.append(0)
+            return "d"
+        elif their.count("c") == 3:
+            state.append(1)
+            return "c"
+        else:
+            state.append(2)
+    if state[0] == 2:
+        return "d"
+    if state[0] == 0:
+        if not "d" in my[-4:]:
+            return "d"
+        return "c"
+    else:
+        return their[-1]

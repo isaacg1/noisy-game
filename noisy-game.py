@@ -88,11 +88,13 @@ def print_scores(players, scores):
 
 if __name__ == '__main__':
     from basic import cooperate, defect, random_player, tit_for_tat, threshold, exploit_threshold
-    from submissions1 import tit_for_whoops, growing_distrust, stubborn_stumbler, slider, tit_for_time, decaying_memory, jedi2sith, kickback,\
-            alternate, change_of_heart, just_noise, vengeful, enough, somewhat_naive, trickster
+    from submissions1 import tit_for_whoops, growing_distrust, stubborn_stumbler, slider,\
+    tit_for_time, decaying_memory, jedi2sith, kickback, alternate, change_of_heart, just_noise,\
+    vengeful, enough, somewhat_naive, trickster, sounder
     players = [cooperate, defect, random_player,
-        tit_for_whoops, growing_distrust, stubborn_stumbler, slider, tit_for_time, decaying_memory, jedi2sith, kickback,
-        alternate, change_of_heart, just_noise, vengeful, enough, somewhat_naive, trickster]
+        tit_for_whoops, growing_distrust, stubborn_stumbler, slider, tit_for_time,
+        decaying_memory, jedi2sith, kickback, alternate, change_of_heart, just_noise, vengeful,
+        enough, somewhat_naive, trickster, sounder]
     if '-b' not in sys.argv:
         players.extend([tit_for_tat, threshold, exploit_threshold])
     final_results = all_games(players)
