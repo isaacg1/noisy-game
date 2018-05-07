@@ -72,13 +72,13 @@ GAMES = 10 if '-f' not in sys.argv else 100
 def all_games(players):
     random.seed(0)
     scores = [0 for _ in range(len(players))]
-    for _ in range(GAMES):
+    for game_num in range(GAMES):
         results = score(players)
         round_scores = evolution(results)
         for i in range(len(scores)):
-            if '-f' in sys.argv:
-                print_scores(players, round_scores)
             scores[i] += round_scores[i] * OUT_OF / GAMES
+        if '-f' in sys.argv:
+            print(game_num, '', end='', flush=True)
     return scores
 
 def print_scores(players, scores):
@@ -89,10 +89,10 @@ def print_scores(players, scores):
 if __name__ == '__main__':
     from basic import cooperate, defect, random_player, tit_for_tat, threshold, exploit_threshold
     from submissions1 import tit_for_whoops, growing_distrust, stubborn_stumbler, slider, tit_for_time, decaying_memory, jedi2sith, kickback,\
-            alternate, change_of_heart, just_noise 
+            alternate, change_of_heart, just_noise, vengeful
     players = [cooperate, defect, random_player,
         tit_for_whoops, growing_distrust, stubborn_stumbler, slider, tit_for_time, decaying_memory, jedi2sith, kickback,
-        alternate, change_of_heart, just_noise]
+        alternate, change_of_heart, just_noise, vengeful]
     if '-b' not in sys.argv:
         players.extend([tit_for_tat, threshold, exploit_threshold])
     final_results = all_games(players)

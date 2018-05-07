@@ -114,3 +114,6 @@ def change_of_heart(m, t, s):
 
 def just_noise(m,t,s):
         return 'c' if random.random() > .2 else 'd'
+
+def vengeful(m,t,s):
+    return 'd' if 'd' in t else 'c'
