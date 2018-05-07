@@ -76,17 +76,24 @@ def all_games(players):
         results = score(players)
         round_scores = evolution(results)
         for i in range(len(scores)):
+            if '-f' in sys.argv:
+                print_scores(players, round_scores)
             scores[i] += round_scores[i] * OUT_OF / GAMES
     return scores
+
+def print_scores(players, scores):
+    for player, s in sorted(zip(players, scores), key=lambda p:-p[1]):
+        print("{}: {:.6}".format(player.__name__, s))
 
 
 if __name__ == '__main__':
     from basic import cooperate, defect, random_player, tit_for_tat, threshold, exploit_threshold
-    from submissions1 import tit_for_whoops, growing_distrust, stubborn_stumbler, slider, tit_for_time, decaying_memory, jedi2sith, kickback
+    from submissions1 import tit_for_whoops, growing_distrust, stubborn_stumbler, slider, tit_for_time, decaying_memory, jedi2sith, kickback,\
+            alternate, change_of_heart
     players = [cooperate, defect, random_player,
-        tit_for_whoops, growing_distrust, stubborn_stumbler, slider, tit_for_time, decaying_memory, jedi2sith, kickback]
+        tit_for_whoops, growing_distrust, stubborn_stumbler, slider, tit_for_time, decaying_memory, jedi2sith, kickback,
+        alternate, change_of_heart]
     if '-b' not in sys.argv:
         players.extend([tit_for_tat, threshold, exploit_threshold])
     final_results = all_games(players)
-    for player, final in sorted(zip(players, final_results), key=lambda p:-p[1]):
-        print("{}: {:.6}".format(player.__name__, final))
+    print_scores(players, final_results)

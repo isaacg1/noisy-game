@@ -98,3 +98,15 @@ def kickback(m, t, s):
   if f < 0.3:
     return "d" if td > md and random.random() < 0.1 else "c"
   return "c" if random.random() > f+2*f*f else "d"
+
+def alternate(m, t, s):
+    if(len(m)==0):
+        return 'c' if random.random()>.5 else 'd'
+    elif(len(m)>290):
+        return 'd'
+    else:
+        return 'd' if m[-1]=='c' else 'c'
+
+def change_of_heart(m, t, s):
+    return 'c' if len(t) < 180 else 'd'
+
