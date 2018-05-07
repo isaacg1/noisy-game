@@ -110,3 +110,5 @@ def alternate(m, t, s):
 def change_of_heart(m, t, s):
     return 'c' if len(t) < 180 else 'd'
 
+def just_noise(m,t,s):
+        return 'c' if random.random() > .2 else 'd'
