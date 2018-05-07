@@ -117,3 +117,30 @@ def just_noise(m,t,s):
 
 def vengeful(m,t,s):
     return 'd' if 'd' in t else 'c'
+
+def enough(m,t,s):
+    if not s:
+        s.append("c")
+        return "c"
+    if s[0]=="t":
+        return "d"
+    if m[-42:].count("d")>10:
+        s[0]="t"
+        return "d"
+    if t[-1]=="d":
+        if s[0]=="d":
+            s[0]="c"
+            return "d"
+        else:
+            s[0]="d"
+            return "c"
+    else:
+        return "c"
+
+def somewhat_naive(m, t, s):
+    p_flip = 0.25
+    n = 10
+    if len(t) < n:
+        return 'c' if random.random() > p_flip else 'd'
+    d_freq = t[-n:].count('d')/n
+    return 'c' if d_freq < p_flip else 'd'
