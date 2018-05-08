@@ -200,3 +200,13 @@ def sounder(my, their, state):
 
 def goldfish(m,t,s):
     return 'd' if 'd' in t[-3:] else 'c'
+
+def everyThree(me,him,s):
+    if len(me) % 3 == 2:
+        return "d"
+    if len(me) > 250:
+        return "d"
+    if him[-5:].count("d")>3:
+        return "d"
+    else:
+        return "c"
