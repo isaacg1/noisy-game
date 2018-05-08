@@ -197,3 +197,6 @@ def sounder(my, their, state):
         return "c"
     else:
         return their[-1]
+
+def goldfish(m,t,s):
+    return 'd' if 'd' in t[-3:] else 'c'
