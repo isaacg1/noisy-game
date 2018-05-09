@@ -210,3 +210,27 @@ def everyThree(me,him,s):
         return "d"
     else:
         return "c"
+
+def stealer(mine, theirs, state):
+    if len(mine) == 0:
+        state.append('c')
+        return 'c'
+    elif len(mine) > 250:
+        return "d"
+    elif state[0] == 't':
+        return 'd'
+    elif mine[-40:].count('d') > 10:
+        state[0] = 't'
+        return 'd'
+    elif theirs[-1] == 'd':
+        if state[0] == 'd':
+            state[0] = 'c'
+            return 'd'
+        else:
+            state[0] = 'd'
+            return 'c'
+    elif all([x == 'c' for x in theirs[-3:]]):
+        state[0] = 'c'
+        return 'c'
+    else:
+        return 'c'
