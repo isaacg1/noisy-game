@@ -233,3 +233,14 @@ def stealer(mine, theirs, state):
         return 'c'
     else:
         return 'c'
+
+def buckets(m, t, s):
+    if len(m) <= 5:
+        return 'c'
+    if len(m) >= 250:
+        return 'd'
+    d_pct = t[-20:].count('d')/len(t[-20:])
+    if random.random() > (2 * d_pct - 0.5):
+        return 'c'
+    else:
+        return 'd'
