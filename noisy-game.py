@@ -92,13 +92,13 @@ if __name__ == '__main__':
             stubborn_stumbler, slider, tit_for_time, decaying_memory,\
             jedi2sith, kickback, alternate, change_of_heart, just_noise,\
             vengeful, enough, somewhat_naive, trickster, sounder, goldfish,\
-            everyThree, stealer, wait_for_50, tit_for_stat, buckets
+            everyThree, stealer, wait_for_50, tit_for_stat, buckets, nicht_genug
     players = [cooperate, defect, random_player,
             tit_for_whoops, growing_distrust, stubborn_stumbler, slider,
             tit_for_time, decaying_memory, jedi2sith, kickback, alternate,
             change_of_heart, just_noise, vengeful, enough, somewhat_naive,
             trickster, sounder, goldfish, everyThree, stealer, wait_for_50,
-            tit_for_stat, buckets]
+            tit_for_stat, buckets, nicht_genug]
     if '-b' not in sys.argv:
         players.extend([tit_for_tat, threshold, exploit_threshold])
     final_results = all_games(players)

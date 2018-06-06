@@ -253,3 +253,24 @@ def buckets(m, t, s):
         return 'c'
     else:
         return 'd'
+
+def nicht_genug(m,t,s):
+    if not s:
+        s.append("c")
+        return "c"
+    if s[0]=="t":
+        return "d"
+    if m[-42:].count("d")>10 or len(t)+t.count("d")>300:
+        s[0]="t"
+        return "d"
+    if t[-1]=="d":
+        if s[0]=="d":
+            s[0]="c"
+            return "d"
+        else:
+            s[0]="d"
+            return "c"
+    else:
+        if t[-3:].count("d")==0:
+            s[0]="c"
+        return "c"
