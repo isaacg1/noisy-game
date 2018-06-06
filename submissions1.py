@@ -233,3 +233,12 @@ def stealer(mine, theirs, state):
         return 'c'
     else:
         return 'c'
+
+def wait_for_50(m, t, s):
+  return 'c' if t.count('d') < 50 else 'd'
+
+def tit_for_stat(m, t, s):
+  if t.count('d') * 2 > len(m):
+    return 'd'
+  else:
+    return 'c'
